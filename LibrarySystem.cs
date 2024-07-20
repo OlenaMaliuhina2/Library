@@ -32,18 +32,19 @@ namespace LibraryApp
             Console.Write("Enter the title of the book to remove: ");
             string title = Console.ReadLine();
 
-            Book bookToRemove = bookList.FirstOrDefault(book => book.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (bookToRemove != null)
-            {
-                
-                bookList.Remove(bookToRemove);
-                Console.WriteLine("Book removed successfully!");
-            }
-            else
-            {
-                //Console.WriteLine("Book not found.");
+            foreach (Book book in bookList) {
+                if (book.Title == title)
+                    {
+                     bookList.Remove (book);
+                     Console.WriteLine("Book removed successfully!");
+                    return;
+                    }
+
+                else
+                {               
                 throw new BookNotFoundException("Book not found.");
-            }
+                 }
+              }
         }
 
         public void ListBooks()
